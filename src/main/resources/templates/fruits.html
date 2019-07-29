@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+	crossorigin="anonymous">
+<meta charset="utf-8" />
+<title>demo</title>
+</head>
+<body>
+	<div class="container">
+		<h2>果物の名前一覧表</h2>
+		<div class="raw mx-auto" style="width: 80%">
+			<table class="table table-striped table-light">
+				<thead class="thead-dark">
+					<tr>
+						<th scope="col">果物の名前</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="fruit : ${fruits}">
+						<td th:text="${fruit.name}" />
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<!-- 追加フォーム -->
+		<hr>
+		<h2>果物の名前を表に追加する</h2>
+		<form method="post" name='form_ins'>
+			<div class="input-group mb-3">
+				<input type="text" name="name" class="form-control" placeholder="追加する名前">
+				<span class="input-group-append">
+					<button type="button" class="btn btn-dark" onclick="submitAction('form_ins','/fruits/insert')">追加</button>
+				</span>
+			</div>
+		</form>
+
+		<!-- 更新フォーム -->
+		<hr>
+		<h2>果物の名前を変更する</h2>
+		<form method="post" name='form_upd'>
+			<div class="input-group mb-3">
+				<div class="input-group-prepend">
+					<span class="input-group-text" id="change_before_name">変更前</span>
+				</div>
+				<input type="text" name="chg_before_name" class="form-control" id="basic-url" aria-describedby="change_before_name">
+			</div>
+			<div class="input-group mb-3">
+				<div class="input-group-prepend">
+					<span class="input-group-text" id="change_after_name">変更後</span>
+				</div>
+				<input type="text" name="chg_after_name" class="form-control" id="basic-url" aria-describedby="change_after_name">
+				<div class="input-group-append">
+					<button type="button" class="btn btn-dark" onclick="submitAction('form_upd','/fruits/update')">更新</button>
+				</div>
+			</div>
+		</form>
+
+		<!-- 削除フォーム -->
+		<hr>
+		<h2>果物の名前を表から削除する</h2>
+		<form method="post" name='form_del'>
+			<div class="input-group mb-3">
+				<input text="text" name="del_name" class="form-control" placeholder="削除する名前">
+				<div class="input-group-append" id="id_del_name">
+					<button type="button" class="btn btn-danger" onclick="submitAction('form_del','/fruits/delete')">削除</button>
+				</div>
+			</div>
+		</form>
+	</div>
+
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous">
+		
+	</script>
+	<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+	<script>
+		function submitAction(form_name,url) {
+			$('form').attr('action', url);
+			document.forms[form_name].submit();
+		}
+	</script>
+</body>
+</html>
+

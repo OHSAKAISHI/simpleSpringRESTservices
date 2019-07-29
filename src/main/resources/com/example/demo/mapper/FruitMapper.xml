@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+	<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	<mapper namespace="com.example.demo.mapper.FruitMapper">
+	<select id="selectAll" resultType="com.example.demo.mapper.entity.Fruit">
+        SELECT name FROM fruits
+    </select>
+    
+	<select id="insert" resultType="com.example.demo.mapper.entity.Fruit">
+            INSERT INTO mydb.fruits (name) VALUES (#{name})
+    </select>
+    
+    <select id="delete" resultType="com.example.demo.mapper.entity.Fruit">
+    	DELETE FROM mydb.fruits WHERE name = #{name}
+    </select>
+    
+    <select id="update" resultType="com.example.demo.mapper.entity.Fruit">
+    	UPDATE fruits SET name = #{after_name} WHERE name = #{before_name}
+    </select>
+</mapper>
